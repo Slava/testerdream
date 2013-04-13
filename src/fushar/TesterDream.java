@@ -292,15 +292,15 @@ public class TesterDream
 			}
 			code.append("); break;\n");
 			code.append("\t\t\t}\n");
-			code.append("*/");
+			code.append("*/\n");
 		}
 		code.append("\t\t\tdefault:\n");
 		code.append("\t\t\t\treturn 0;\n");
 		
 		// Generate random test
-		code.append("\t\t\t/*");
-		code.append("\t\t\t{");
-		code.append("\t\t\tcout << \"seed of this test is: \" << _seed << endl; ");
+		code.append("\t\t\t/*\n");
+		code.append("\t\t\t{\n");
+		code.append("\t\t\tcout << \"seed of this test is: \" << _seed << endl;\n");
 		code.append("\t\t\t// implement test generation code\n");
 		for (int j = 0; j < paramTypes.length; j++)
 				generateParameterCode(code, true, paramTypes[j], paramNames[j], "");
@@ -321,8 +321,9 @@ public class TesterDream
 			else
 				code.append(paramTypes[j].getDescriptor(languages) + "(" + paramNames[j] + ", " + paramNames[j] + "+sizeof(" + paramNames[j] + ")/sizeof(" + getBaseName(paramTypes[j]) + "))");
 		}
-		code.append("\t\t\t}");
-		code.append("\t\t\t*/");
+		code.append(");\n");
+		code.append("\t\t\t}\n");
+		code.append("\t\t\t*/\n");
 		code.append("\t\t}\n");
 	}
 	
