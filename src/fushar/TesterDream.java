@@ -119,7 +119,7 @@ public class TesterDream
 		code.append("\t{\n");
 		code.append("\t\tsrand(time(0));\n");
 		code.append("\t\tcout << \"Testing " + problemName + " (" + points + " points)\" << endl << endl;\n");
-		code.append("\t\tfor (int i = 0; i < 20; i++)\n");
+		code.append("\t\tfor (int i = 0; i < 100; i++)\n");
 		code.append("\t\t{\n");
 		code.append("\t\t\tostringstream s; s << argv[0] << \" \" << i << \" \" << rand();\n");
 		code.append("\t\t\tint exitCode = system(s.str().c_str());\n");
@@ -296,9 +296,31 @@ public class TesterDream
 		}
 		code.append("\t\t\tdefault:\n");
 		code.append("\t\t\t\treturn 0;\n");
+		
+		// Generate random test
 		code.append("\t\t\t/*");
 		code.append("\t\t\t{");
 		code.append("\t\t\tcout << \"seed of this test is: \" << _seed << endl; ");
+		code.append("\t\t\t// implement test generation code\n");
+		for (int j = 0; j < paramTypes.length; j++)
+				generateParameterCode(code, true, paramTypes[j], paramNames[j], "");
+			
+		if (returnType.getDimension() == 0)
+			generateParameterCode(code, false, returnType, "_expected", "");
+		else
+		{
+			generateParameterCode(code, true, returnType, "__expected", "");
+			code.append("\t\t\t\t_expected = " + returnType.getDescriptor(languages) + "(__expected, __expected+sizeof(__expected)/sizeof(" + getBaseName(returnType) + "));\n");
+		}
+		code.append("\t\t\t\t_received = _obj." + methodName + "(");
+		for (int j = 0; j < paramNames.length; j++)
+		{
+			if (j > 0) code.append(", ");
+			if (paramTypes[j].getDimension() == 0)
+				code.append(paramNames[j]);
+			else
+				code.append(paramTypes[j].getDescriptor(languages) + "(" + paramNames[j] + ", " + paramNames[j] + "+sizeof(" + paramNames[j] + ")/sizeof(" + getBaseName(paramTypes[j]) + "))");
+		}
 		code.append("\t\t\t}");
 		code.append("\t\t\t*/");
 		code.append("\t\t}\n");
