@@ -137,6 +137,8 @@ public class TesterDream
 		code.append("\telse\n");
 		code.append("\t{\n");
 		code.append("\t\tint _tc; istringstream(argv[1]) >> _tc;\n");
+		code.append("\t\tint _seed; istringstream(argv[2]) >> _seed;\n");
+		code.append("\t\tsrand(_seed);\n");
 		generateTestCode(code);
 		generateVerifyCode(code);
 		code.append("\t}\n");
