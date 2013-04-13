@@ -1,3 +1,11 @@
+About this fork
+===============
+
+All credits go to [Fushar](http://fusharblog.com/apps/testerdream/).
+This fork implements one feature I find very usefull: boilerplate code for stress check on randomly generated test cases. It just adds section for it in code, increases number of test iteration to 100 and passes new seed to child process every time to generate new tests every time. Also prints out seed number in case you need to reproduce a test.
+
+***
+
 TesterDream - A TopCoder Arena Plugin
 =====================================
 
