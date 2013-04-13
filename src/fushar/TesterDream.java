@@ -265,7 +265,8 @@ public class TesterDream
 		// Custom test cases
 		for (int i = 0; i < 3; i++)
 		{
-			code.append("\t\t\t/*case "+(testCases.length+i)+":\n");
+			code.append("/*\n");
+			code.append("\t\t\tcase "+(testCases.length+i)+":\n");
 			code.append("\t\t\t{\n");
 			for (int j = 0; j < paramTypes.length; j++)
 				generateParameterCode(code, true, paramTypes[j], paramNames[j], "");
@@ -287,9 +288,11 @@ public class TesterDream
 					code.append(paramTypes[j].getDescriptor(languages) + "(" + paramNames[j] + ", " + paramNames[j] + "+sizeof(" + paramNames[j] + ")/sizeof(" + getBaseName(paramTypes[j]) + "))");
 			}
 			code.append("); break;\n");
-			code.append("\t\t\t}*/\n");
+			code.append("\t\t\t}\n");
+			code.append("*/");
 		}
-		code.append("\t\t\tdefault: return 0;\n");
+		code.append("\t\t\tdefault:\n");
+		code.append("\t\t\t\treturn 0;\n");
 		code.append("\t\t}\n");
 	}
 	
