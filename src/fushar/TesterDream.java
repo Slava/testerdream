@@ -296,6 +296,11 @@ public class TesterDream
 		}
 		code.append("\t\t\tdefault:\n");
 		code.append("\t\t\t\treturn 0;\n");
+		code.append("\t\t\t/*");
+		code.append("\t\t\t{");
+		code.append("\t\t\tcout << \"seed of this test is: \" << _seed << endl; ");
+		code.append("\t\t\t}");
+		code.append("\t\t\t*/");
 		code.append("\t\t}\n");
 	}
 	
