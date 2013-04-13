@@ -117,10 +117,11 @@ public class TesterDream
 		code.append("int main(int argc, char* argv[])\n{\n");
 		code.append("\tif (argc == 1) \n");
 		code.append("\t{\n");
+		code.append("\t\tsrand(time(0));\n");
 		code.append("\t\tcout << \"Testing " + problemName + " (" + points + " points)\" << endl << endl;\n");
 		code.append("\t\tfor (int i = 0; i < 20; i++)\n");
 		code.append("\t\t{\n");
-		code.append("\t\t\tostringstream s; s << argv[0] << \" \" << i;\n");
+		code.append("\t\t\tostringstream s; s << argv[0] << \" \" << i << \" \" << rand();\n");
 		code.append("\t\t\tint exitCode = system(s.str().c_str());\n");
 		code.append("\t\t\tif (exitCode)\n");
 		code.append("\t\t\t\tcout << \"#\" << i << \": Runtime Error\" << endl;\n");
